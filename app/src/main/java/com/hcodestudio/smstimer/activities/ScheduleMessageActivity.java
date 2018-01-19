@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.hcodestudio.smstimer.R.id.floatingActionButton;
+import static com.hcodestudio.smstimer.R.id.saveFab;
 import static com.hcodestudio.smstimer.data.TimerContract.TIMER_CONTENT_URI;
 import static com.hcodestudio.smstimer.data.TimerContract.TimerEntry.DATE;
 import static com.hcodestudio.smstimer.data.TimerContract.TimerEntry.MESSAGE;
@@ -88,11 +89,12 @@ public class ScheduleMessageActivity extends AppCompatActivity {
         setupDateEditText();
         setupTimeEditText();
         addContact();
+        getContent();
 
-        date = textInputEditText.getText().toString();
-        time = timeEditText.getText().toString();
-        message = messageEditText.getText().toString();
-        phone = phoneEditText.getText().toString();
+//        date = textInputEditText.getText().toString();
+//        time = timeEditText.getText().toString();
+//        message = messageEditText.getText().toString();
+//        phone = phoneEditText.getText().toString();
 
         FloatingActionButton floatingActionButton =
                 (FloatingActionButton) findViewById(R.id.saveFab);
@@ -100,26 +102,41 @@ public class ScheduleMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Store messages and phone  numbers
-                SharedPreferences.Editor editor = getSharedPreferences("sendMessage", MODE_PRIVATE).edit();
-                editor.putString("phone", phone);
-                editor.putString("msg", message);
-                editor.apply();
+                saveContent();
                 //sendMessage();
                 scheduleTask(calendar.getTimeInMillis());
                  // save(name, phone, message, date, time);
-                //finish();
+                finish();
                 Toast.makeText(ScheduleMessageActivity.this, "Message Scheduled, go Relax", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
-        SharedPreferences sharedPreferences = getSharedPreferences("sendMessage", MODE_PRIVATE);
-          restorePhone = sharedPreferences.getString("phone", " ");
-         restoreMessage = sharedPreferences.getString("msg", " ");
+        getContent();
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveContent();
+    }
+
+    public void saveContent(){
+        SharedPreferences.Editor editor = getSharedPreferences("sendMessage", MODE_PRIVATE).edit();
+        editor.putString("phone", phone);
+        editor.putString("msg", message);
+        editor.apply();
+    }
+
+    public void getContent(){
+        SharedPreferences sharedPreferences = getSharedPreferences("sendMessage", MODE_PRIVATE);
+        restorePhone = sharedPreferences.getString("phone", " ");
+        restoreMessage = sharedPreferences.getString("msg", " ");
     }
 
     private void scheduleTask(long time) {
