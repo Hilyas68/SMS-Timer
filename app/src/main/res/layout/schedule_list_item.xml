@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/namePhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/namePhone"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/message"
+        android:layout_below="@+id/namePhone"
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/scheduleSent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        tools:text="scheduled"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        tools:text="12/12/17 12:20"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/message" />
+</RelativeLayout>
