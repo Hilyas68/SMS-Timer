@@ -383,19 +383,19 @@ public class ScheduleMessageActivity extends AppCompatActivity {
         getContentResolver().insert(TIMER_CONTENT_URI, contentValues);
     }
 
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        outState.putString("message", messageEditText.getText().toString());
-//        outState.putString("phone", phoneEditText.getText().toString());
-//        super.onSaveInstanceState(outState);
-//    }
-//
-//    @Override
-//    public void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        messageEditText.setText(savedInstanceState.getString("message"));
-//        phoneEditText.setText(savedInstanceState.getString("phone"));
-//    }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("message", messageEditText.getText().toString());
+        outState.putString("phone", phoneEditText.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        messageEditText.setText(savedInstanceState.getString("message"));
+        phoneEditText.setText(savedInstanceState.getString("phone"));
+    }
 }
 
 
